@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import './App.css'
 
 function App() {
@@ -31,32 +31,47 @@ function App() {
      }
 
 
-  return (
-    <div>
-      <input type="text"
+  return (    
+    
+    <div className='container'>
+
+        <span className='title'>YEAH SUM NUMBERS</span>
+
+      <Fragment>
+        <div className='buttons'>
+      <input type="text" placeholder='Type here' className='input'
       value={value}
       onChange={(event) => setValue(event.currentTarget.value)}/>
 
-      <button onClick={add}>+</button>
+      <button className='plus' onClick={add}>+</button>
 
-      <button onClick={calculate}>Calculate</button>
-      <div style={{ display: 'flex', gap: "4px" }} >
-        {numbers.map((item, index, currentArray) => {
+      <button className='calc' onClick={calculate}>Calculate</button>
+        </div>
+      </Fragment>
+
+      <Fragment>
+      <div style={{ display: 'flex', gap: "4px" }} className='numbers'>
+        {numbers.map((item, index, currentArray) => (
+
           <div key={index}>
             <span>{item}</span>
             {currentArray.length - 1 !== index && <span> + </span>}
           </div>
-        })}
+         
+        ))}
 
         {result > 0 && <span>=</span>}
-        {result > 0 && <span>{result}</span>}
+        {result > 0 && <span className='result'>{result}</span>}
       </div>
+      </Fragment>
 
-      <div>
-        <button onClick={clean}>Clean</button>
-      </div>
+      <span className='clear'>
+        <button onClick={clean}>Clear</button>
+      </span>
+    
     </div>
-  )
+    
+  );
 }
 
 export default App
